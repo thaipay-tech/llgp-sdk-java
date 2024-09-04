@@ -1,0 +1,28 @@
+package com.lianlian.global.payment.sdk.test;
+
+import com.lianlian.global.payment.sdk.utils.SignUtils;
+import org.junit.Test;
+
+import java.util.Map;
+
+import static com.lianlian.global.payment.sdk.utils.SignUtils.PRIVATE_KEY;
+import static com.lianlian.global.payment.sdk.utils.SignUtils.PUBLIC_KEY;
+
+/**
+ * @author thaipay
+ * @since 1.0
+ */
+public class BaseTest {
+
+    String merchantId = "142023081800601001";
+    String merchantPrivateKey = "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDOcDDWYnkGQgcgbVYj0CZaDMW2ebnIIIymeVmBnYZsYil/OQnG+4Ny07AtuVErqNAmVUd4Nr41yE0PphTBSmHOQORCt/xTJXhILaP5GjzXYfUyBrVQQF0Jec/rgB5wNPdMcZS34EtirfHeqN+MCSYaQmbOBU8WbEDZN1Wyf36tmKHTDIQtvDfEVVMauDoB9DLDnRjxaLOe8n3u+MPgZYv3S8TcHoZZhoqh3SkpkyMQOJ9j1kc5tBQCmEoam9OcLjUIul1qidBPm+/QBDFlghDaWO+XQbq/TfSuh78Tg3fQ/kcLvZFQTiMUCAWqaBG5i/u03CtJVOE3iqhQ+z833p0pAgMBAAECggEBAM3gp2P22vm5ub/GKsUWnljqKfecmAIVLBAOL4yLW/cVQotFiBGw3dwTb7159pCTD9ta6ybheXrLosa7fDF0i+wVXU+Ii5UkZjudgM06NHkckVrtw78gIWkE2a3knPaMbCEJmSZ0AtqL3Q6Q3jibGyvPExXdx4z2MwouHEIi0mQubHeQbIVxTRzXprAWFruElur0C9YvJXaZ2Xp9J5KKAx9F5NGN9yUFNhmME2CN0U9zaJAYBF3K/yOaPTFbAJcYvhdMFJo5aH+MZqkaztHsdLuyL1Tkd8RhWsAGpMFMP+XGJoD+fpcHR7VI3wcZSQnSnB+ehE6G34okhG1D/nEtP7ECgYEA6wgS2UNcqD/RBNcUBdFhrd0Safbw1sjm3vSmEhVXgP89Uex+vuY/vGlkISXyn4XQP0Z/39v6/xxZWeU90OfSVBW5uw71mXAJSakhAiN+tZCzunr2jX0tqVqaeYsvL5aypckgrNx6g1T2+MLD43MCSDbirfdCtGE0yqLWwoUxI3UCgYEA4NsR55Z0t5cUYFhnyJiTGt6wSjCNRf4A74KqVFK8RMS78s2VdZ21ydWujRgCaV0KSgyUPKhiVv5YOOUHRMjyyBjHlQML/fdFIllAieDv9jidg8OZDXFHxn60dHfW4FNu9mlXrAJHPvOTxvpSyNxPm2ES3fDUw09be/7R2No5IGUCgYByK+3cFNkB8l47F6/mU5w7tVSonQjJjbZ5QCccSbnENDk5fsTjPz5e7GNzpteBnqNW2Yxs1pPLMZ5GCRJKVRLbPeKHd/DepIoeekZKn6uBz9U/FVSHzvNLfXPk7zPwzifiWR3CWyg4fCGtHg/Cga/uHJtpHuAMd9wJQ6lHvSPtsQKBgQCOoQdrclmY9wFa19kFOhrdyXHjrYZ/Zk5rnuOyV0TLDkv2CQgMMjzUyXFOWHN3KChVrkL9cwXmDrIhbM2+iQTPfkBjOiqKLyYwUpMIoqEz+teXdCQKjdeshkSrODUZ2HKjZVDScCOHP/R2G+UVOgJZGitgktozBYyPS6UKu+nOrQKBgQCpjKVX5C0TBfv5MiH71XKuhxKePhl+4TKmfO6wivw2ifyhQ2UeD8ZFUrBD3amV9hjQT71EfVxuIWCHv4bYlHj8c4kD6brPkXHpV8WKKrxOUsVE1RaV8fYE0ESVontySl22Egw2xdOwkTznMMKUeAvf7iGD6udU5+jgq5xFhm2hLA==";
+    String lianPayPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArahtvCVnqTwNItRLHPUotxYO0VujAfhTA4lB3MZtu67bYJkOxRuskxLdJaSpRWq1SVfN0LLTTLVknZmyDwght1JqbjlDZNQX2oTxK2b4l3qm7LjlbRpAhMEn5WGvceAjw83d/bB7UvvT7jeNBnKLFo+ZUiCdoDK/8gUZ3rcn6HsCdnFOl0Oo2HUin5xpHYxRWlmeqtBz7nzYtYlvkNi5gjJYCY8dMhQAqxaYGTKK1waQjsZNYpOJLskVRqypy1HsO9l5nHd5YAb4GLkN1FzFVT+DdSoCN86Hu8NJCSTowRdwHtxOMMOn89c/3/p8SYCaD840RgqNEsmZzM7teiLDBQIDAQAB";
+
+    @Test
+    public void genKey() throws Exception {
+
+        Map<String, String> keyPair = SignUtils.genKeyPair();
+        System.out.println("public key= " + keyPair.get(PUBLIC_KEY));
+        System.out.println("private key = " + keyPair.get(PRIVATE_KEY));
+    }
+}
