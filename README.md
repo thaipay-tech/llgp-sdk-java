@@ -1,1 +1,2 @@
-java development kit for lianlian thailand payment
+# llgp-sdk-java
+LianLian Global (Thailand) payment gateway java sdk.
