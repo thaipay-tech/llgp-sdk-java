@@ -20,24 +20,9 @@ public class LLPayException extends RuntimeException{
         this.errorCode = errorCode;
     }
 
-    public LLPayException(String message) {
-
-        super(message);
-    }
-
-    public LLPayException(String message, Throwable cause) {
-
-        super(message, cause);
-    }
-
     public LLPayException(Throwable cause) {
 
         super(cause);
-    }
-
-    public LLPayException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 
     public int getErrorCode() {

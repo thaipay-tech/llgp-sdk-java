@@ -8,7 +8,7 @@ public final class StringUtils {
 
     public static boolean isEmpty(String str) {
 
-        return (str == null || "".equals(str));
+        return (str == null || str.isEmpty());
     }
 
     public static boolean equals(final CharSequence cs1, final CharSequence cs2) {
@@ -25,12 +25,15 @@ public final class StringUtils {
         if (cs1 instanceof String && cs2 instanceof String) {
             return cs1.equals(cs2);
         }
-        return regionMatches(cs1, false, 0, cs2, 0, cs1.length());
+        return regionMatches(cs1,  cs2, cs1.length());
     }
 
-    private static boolean regionMatches(final CharSequence cs, final boolean ignoreCase, final int thisStart,
-                                         final CharSequence substring, final int start, final int length) {
+    private static boolean regionMatches(final CharSequence cs, final CharSequence substring, final int length) {
 
+
+        final boolean ignoreCase = false;
+        int thisStart = 0;
+        final int start = 0;
         if (cs instanceof String && substring instanceof String) {
             return ((String) cs).regionMatches(ignoreCase, thisStart, (String) substring, start, length);
         }
@@ -41,11 +44,6 @@ public final class StringUtils {
         // Extract these first so we detect NPEs the same as the java.lang.String version
         final int srcLen = cs.length() - thisStart;
         final int otherLen = substring.length() - start;
-
-        // Check for invalid parameters
-        if (thisStart < 0 || start < 0 || length < 0) {
-            return false;
-        }
 
         // Check that the regions are long enough
         if (srcLen < length || otherLen < length) {

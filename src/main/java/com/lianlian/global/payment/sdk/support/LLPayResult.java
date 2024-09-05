@@ -31,21 +31,6 @@ public class LLPayResult<R> implements Serializable {
         this.message = message;
     }
 
-    public LLPayResult(int code, String message, String trace_id) {
-
-        this.code = code;
-        this.message = message;
-        this.trace_id = trace_id;
-    }
-
-    public LLPayResult(int code, String message, String trace_id, R data) {
-
-        this.code = code;
-        this.message = message;
-        this.trace_id = trace_id;
-        this.data = data;
-    }
-
     public boolean success() {
 
         return SUCCESS_CODE == this.code;

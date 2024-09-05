@@ -21,8 +21,8 @@ import java.util.Map;
 public final class DefaultLLPayClient implements LLPayClient {
 
     private String serverUrl;
-    private String merchantPrivateKey;
-    private String lianPayPublicKey;
+    final private String merchantPrivateKey;
+    final private String lianPayPublicKey;
 
     public DefaultLLPayClient(Profiles profile, String merchantPrivateKey, String lianPayPublicKey) {
 

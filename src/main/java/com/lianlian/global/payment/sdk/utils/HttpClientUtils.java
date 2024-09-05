@@ -45,7 +45,7 @@ public final class HttpClientUtils {
     private static final int CONNECTION_REQUEST_TIMEOUT = 1000;
     private static final int SOCKET_TIMEOUT = 15000;
 
-    private static CloseableHttpClient HTTP_CLIENT;
+    private static final CloseableHttpClient HTTP_CLIENT;
 
     static {
 
@@ -62,7 +62,8 @@ public final class HttpClientUtils {
     }
 
 
-    public static Pair doGet(String uri, Map<String, String> headers, Map<String, String> params) {
+    public static Pair<Map<String, String>, String> doGet(String uri, Map<String, String> headers,
+                                                   Map<String, String> params) {
 
         CloseableHttpResponse response = null;
         try {
@@ -121,7 +122,8 @@ public final class HttpClientUtils {
     }
 
 
-    public static Pair doPost(String uri, Map<String, String> headers, String body) throws LLPayException {
+    public static Pair<Map<String, String>, String> doPost(String uri, Map<String, String> headers, String body)
+            throws LLPayException {
 
         CloseableHttpResponse response = null;
         try {
