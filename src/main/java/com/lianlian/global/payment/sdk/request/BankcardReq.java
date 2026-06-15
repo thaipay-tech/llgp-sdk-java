@@ -81,7 +81,7 @@ public class BankcardReq implements LLPayRequest<BankcardResp> {
             return "parameter [order_desc] invalid";
         }
 
-        if (!Arrays.asList("CARD", "CREDIT_CARD", "DEBIT_CARD").contains(payment_method)) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (card == null) {

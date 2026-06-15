@@ -20,6 +20,7 @@ public class ShopeePayResp implements LLPayResponse {
     private String order_amount;
     private String order_currency;
     private String link_url;
+    private String link_url_app;
     private String link_url_expire_sec;
     private String create_time;
 }

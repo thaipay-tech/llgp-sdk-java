@@ -41,6 +41,7 @@ public class CheckoutReq implements LLPayRequest<CheckoutResp> {
     private List<Product> products;
     private String notify_url;
     private String redirect_url;
+    private String cancel_url;
 
 
     @Override

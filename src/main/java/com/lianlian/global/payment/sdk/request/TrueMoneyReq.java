@@ -26,15 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TrueMoneyReq implements LLPayRequest<TrueMoneyResp> {
 
-    public static final List<String> TYPES = Arrays.asList(
-            "NORMAL_ALL_TM", "NORMAL_BALANCE_TM", "NORMAL_CREDIT_TM",
-            "DIGITAL_GAME_ALL_TM", "DIGITAL_GAME_BALANCE_TM", "DIGITAL_GAME_CREDIT_TM",
-            "DIGITAL_LIVE_ALL_TM", "DIGITAL_LIVE_BALANCE_TM", "DIGITAL_LIVE_CREDIT_TM",
-            "DIGITAL_DEVICE_ALL_TM", "DIGITAL_DEVICE_BALANCE_TM", "DIGITAL_DEVICE_CREDIT_TM",
-            "DIGITAL_EBOOK_ALL_TM", "DIGITAL_EBOOK_BALANCE_TM", "DIGITAL_EBOOK_CREDIT_TM",
-            "DIGITAL_ENTERTAINMENT_ALL_TM", "DIGITAL_ENTERTAINMENT_BALANCE_TM", "DIGITAL_ENTERTAINMENT_CREDIT_TM",
-            "DIGITAL_ONLINEEDU_ALL_TM", "DIGITAL_ONLINEEDU_BALANCE_TM", "DIGITAL_ONLINEEDU_CREDIT_TM");
-
     private String version;
     private Service service;
     private String merchant_id;
@@ -85,10 +76,10 @@ public class TrueMoneyReq implements LLPayRequest<TrueMoneyResp> {
         }
         if (StringUtils.isEmpty(order_desc) ||
                 order_desc.length() > 256) {
-            return "parameter [order_info] invalid";
+            return "parameter [order_desc] invalid";
         }
 
-        if (!TYPES.contains(payment_method)) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

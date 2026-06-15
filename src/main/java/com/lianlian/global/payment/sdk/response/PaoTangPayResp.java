@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AlipayResp implements LLPayResponse {
+public class PaoTangPayResp implements LLPayResponse {
 
     private String merchant_id;
     private String merchant_order_id;
@@ -19,8 +19,8 @@ public class AlipayResp implements LLPayResponse {
     private String order_status;
     private String order_amount;
     private String order_currency;
-    private String due_date;
     private String link_url;
-    private String req_data_to_channel;
+    private String link_url_app;
+    private String link_url_expire_sec;
     private String create_time;
 }

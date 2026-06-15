@@ -78,7 +78,7 @@ public class QRPromptReq implements LLPayRequest<QRPromptResp> {
             return "parameter [order_desc] invalid";
         }
 
-        if (!StringUtils.equals(payment_method, "THAI_QR")) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

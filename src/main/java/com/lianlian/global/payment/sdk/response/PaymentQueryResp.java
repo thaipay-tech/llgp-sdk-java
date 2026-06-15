@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author thaipay
@@ -30,6 +31,7 @@ public class PaymentQueryResp implements LLPayResponse {
     private List<Product> products;
     private String create_time;
     private String complete_time;
+    private Map<String, Object> MetaData;
 }
 
 

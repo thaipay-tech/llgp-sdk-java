@@ -75,10 +75,10 @@ public class CounterPayReq implements LLPayRequest<CounterPayResp> {
         }
         if (StringUtils.isEmpty(order_desc) ||
                 order_desc.length() > 256) {
-            return "parameter [order_info] invalid";
+            return "parameter [order_desc] invalid";
         }
 
-        if (!StringUtils.equals(payment_method, "COUNTER_UNION")) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

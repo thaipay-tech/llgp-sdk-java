@@ -40,6 +40,25 @@ public enum Service {
 
     COUNTER_PAY("llpth.counter.pay"),
 
+    PAO_TANG_PAY("llpth.paotang.pay"),
+
+    DIRECT_DEBIT("llpth.direct-debit.pay"),
+
+    /**
+     * for account binding (Direct API mode)
+     */
+    ACCOUNT_BIND("llpth.account.bind"),
+
+    /**
+     * for account binding (Checkout page mode)
+     */
+    ACCOUNT_APPLY("llpth.account.apply"),
+
+    /**
+     * for account binding status query
+     */
+    ACCOUNT_BIND_QUERY("llpth.account.query"),
+
 
     /**
      * for unified refund service
@@ -51,6 +70,7 @@ public enum Service {
      */
     PAYMENT_QUERY("llpth.payment.query"),
     REFUND_QUERY("llpth.refund.query"),
+    ESLIP_QUERY("llpth.qr-prompt.eslip.query"),
 
     /**
      * for payout

@@ -80,8 +80,7 @@ public class MobileBankingReq implements LLPayRequest<MobileBankingResp> {
             return "parameter [order_desc] invalid";
         }
 
-        if (!Arrays.asList("KPLUS_NOTIFICATION", "EASY_APP_BILL", "EASY_APP_CREDIT", "EASY_APP_ALL",
-                "KMA_NOTIFICATION", "KMA_DEEPLINK").contains(payment_method)) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

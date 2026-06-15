@@ -76,10 +76,10 @@ public class ShopeePayReq implements LLPayRequest<ShopeePayResp> {
         }
         if (StringUtils.isEmpty(order_desc) ||
                 order_desc.length() > 256) {
-            return "parameter [order_info] invalid";
+            return "parameter [order_desc] invalid";
         }
 
-        if (!Arrays.asList("NORMAL_ALL_SP", "NORMAL_BALANCE_SP", "NORMAL_CREDIT_SP").contains(payment_method)) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

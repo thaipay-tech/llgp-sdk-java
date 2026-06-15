@@ -32,7 +32,7 @@ public class AlipayReq implements LLPayRequest<AlipayResp> {
     private String merchant_order_id;
     private String order_amount;
     private String order_currency;
-    private String order_info;
+    private String order_desc;
 
     private String payment_method;
     private Customer customer;
@@ -74,12 +74,12 @@ public class AlipayReq implements LLPayRequest<AlipayResp> {
         if (!Currency.resolve(order_currency)) {
             return "parameter [order_currency] invalid";
         }
-        if (StringUtils.isEmpty(order_info) ||
-                order_info.length() > 256) {
-            return "parameter [order_info] invalid";
+        if (StringUtils.isEmpty(order_desc) ||
+                order_desc.length() > 256) {
+            return "parameter [order_desc] invalid";
         }
 
-        if (!Arrays.asList("WEB_PAYMENT", "WAP_PAYMENT").contains(payment_method)) {
+        if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer

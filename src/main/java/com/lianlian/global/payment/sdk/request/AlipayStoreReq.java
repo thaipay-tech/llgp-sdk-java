@@ -71,7 +71,7 @@ public class AlipayStoreReq implements LLPayRequest<AlipayStoreResp> {
                 order_info.length() > 256) {
             return "parameter [order_info] invalid";
         }
-        if (!Arrays.asList("MERCHANT_SCAN", "DYNAMIC_CODE").contains(payment_type)) {
+        if (StringUtils.isEmpty(payment_type)) {
             return "parameter [payment_type] invalid";
         }
         if (StringUtils.equals(payment_type, "MERCHANT_SCAN") && !buyer_identity_code.matches("^28\\d{16}$")) {

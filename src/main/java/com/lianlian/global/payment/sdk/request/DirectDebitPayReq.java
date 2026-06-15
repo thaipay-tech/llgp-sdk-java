@@ -3,7 +3,7 @@ package com.lianlian.global.payment.sdk.request;
 import com.alibaba.fastjson.JSON;
 import com.lianlian.global.payment.sdk.dto.Customer;
 import com.lianlian.global.payment.sdk.dto.Product;
-import com.lianlian.global.payment.sdk.response.WechatPayResp;
+import com.lianlian.global.payment.sdk.response.DirectDebitPayResp;
 import com.lianlian.global.payment.sdk.support.Currency;
 import com.lianlian.global.payment.sdk.support.RegexConst;
 import com.lianlian.global.payment.sdk.support.Service;
@@ -13,7 +13,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WechatPayReq implements LLPayRequest<WechatPayResp> {
+public class DirectDebitPayReq implements LLPayRequest<DirectDebitPayResp> {
 
     private String version;
     private Service service;
@@ -34,20 +33,18 @@ public class WechatPayReq implements LLPayRequest<WechatPayResp> {
     private String order_currency;
     private String order_desc;
 
-    private String store_id;
     private String payment_method;
+    private String link_account_id;
     private Customer customer;
     private List<Product> products;
     private String notify_url;
-    private String auth_code;
-    private String appid;
-    private String openid;
+    private String redirect_url;
 
 
     @Override
     public Class acquireRespCls() {
 
-        return WechatPayResp.class;
+        return DirectDebitPayResp.class;
     }
 
     @Override
@@ -81,12 +78,11 @@ public class WechatPayReq implements LLPayRequest<WechatPayResp> {
                 order_desc.length() > 256) {
             return "parameter [order_desc] invalid";
         }
-        if (!StringUtils.isEmpty(store_id) && !store_id.matches(RegexConst.MERCHANT_ID)) {
-            return "parameter [store_id] invalid";
-        }
-
         if (StringUtils.isEmpty(payment_method)) {
             return "parameter [payment_method] invalid";
+        }
+        if (StringUtils.isEmpty(link_account_id)) {
+            return "parameter [link_account_id] invalid";
         }
         if (customer == null || StringUtils.isEmpty(customer.getMerchant_user_id()) || StringUtils.isEmpty(customer
                 .getFull_name())) {
@@ -102,14 +98,9 @@ public class WechatPayReq implements LLPayRequest<WechatPayResp> {
                 notify_url.length() > 256) {
             return "parameter [notify_url] invalid";
         }
-        if (StringUtils.equals(payment_method, "MERCHANT_SCAN") && !auth_code.matches("^\\d{16,20}$")) {
-            return "parameter [auth_code] invalid";
-        }
-        if (StringUtils.equals(payment_method, "INAPP_PAYMENT") && !appid.matches("^wx[a-f\\d]{15,18}$")) {
-            return "parameter [appid] invalid";
-        }
-        if (StringUtils.equals(payment_method, "INAPP_PAYMENT") && !openid.matches("^[a-zA-Z\\d_\\-]{20,32}$")) {
-            return "parameter [openid] invalid";
+        if (StringUtils.isEmpty(redirect_url) ||
+                redirect_url.length() > 256) {
+            return "parameter [redirect_url] invalid";
         }
         return null;
     }

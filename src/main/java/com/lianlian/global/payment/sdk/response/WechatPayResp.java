@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WechatPayResp implements LLPayResponse {
 
+    private String merchant_id;
+    private String merchant_order_id;
     private String order_id;
     private String order_status;
     private String order_amount;

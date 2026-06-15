@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author thaipay
@@ -21,8 +22,8 @@ import java.util.Map;
 public final class DefaultLLPayClient implements LLPayClient {
 
     private String serverUrl;
-    final private String merchantPrivateKey;
-    final private String lianPayPublicKey;
+    private String merchantPrivateKey;
+    private String lianPayPublicKey;
 
     public DefaultLLPayClient(Profiles profile, String merchantPrivateKey, String lianPayPublicKey) {
 
@@ -69,6 +70,7 @@ public final class DefaultLLPayClient implements LLPayClient {
         // call remote payment service
         Pair<Map<String, String>, String> respPair;
         LLPayResult resultResp;
+        JSONObject data;
         try {
             Service service = request.service();
             if (Service.isQuery(service)) {
@@ -78,7 +80,7 @@ public final class DefaultLLPayClient implements LLPayClient {
                 respPair = HttpClientUtils.doPost(this.serverUrl, headerMap, originalRequestBody);
             }
             resultResp = JSON.parseObject(respPair.getValue(), LLPayResult.class);
-            JSONObject data = (JSONObject) resultResp.getData();
+            data = (JSONObject) resultResp.getData();
             if (data != null) {
                 resultResp.setData(data.toJavaObject(request.acquireRespCls()));
             }
@@ -94,7 +96,7 @@ public final class DefaultLLPayClient implements LLPayClient {
                 return resultResp;
             }
             respSign = respPair.getKey().get(GlobalConst.SIGNATURE);
-            if (!SignUtils.verify(SignUtils.jsonArgs2String(JSON.toJSONString(resultResp.getData())),
+            if (Objects.nonNull(data) && !SignUtils.verify(SignUtils.jsonArgs2String(JSON.toJSONString(data)),
                     respSign, lianPayPublicKey)) {
                 log.warn("verify response signature failure. respBody={}, signature={}, lianlian public key={}",
                         resultResp.getData(), respSign, lianPayPublicKey);
